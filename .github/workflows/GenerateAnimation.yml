@@ -1,0 +1,30 @@
+name: GenerateContribution
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *"
+
+jobs:
+  update-repository:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate Contribution
+        uses: Platane/snk/svg-only@v3
+        id: contribution-gif
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            ./img/contribution.svg
+            ./img/contribution-dark.svg?palette=github-dark
+      - name: Push to GitHub
+        uses: EndBug/add-and-commit@main
+        with:
+          branch: main
+          message: ':rocket: Update' 
+        
+    
+    
