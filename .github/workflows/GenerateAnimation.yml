@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Generate Contribution
-        uses: Platane/snk/svg-only@v3
+        uses: KishinoKay/snk/svg-only@v3
         id: contribution-gif
         with:
           github_user_name: ${{ github.repository_owner }}
